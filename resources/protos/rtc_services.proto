@@ -1,0 +1,33 @@
+//The protocol buffer 3 interface definitions
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.jsxniu.cloud.rtc.signal.rpc";
+option java_outer_classname = "MediaServiceProto";
+option objc_class_prefix = "SIG";
+
+package mediaservice;
+
+// The media rtc service definition.
+service MediaRTC {
+
+  // Get the receive address for udp data
+  rpc get_recv_address (RecvAddrRequest) returns (RecvAddrResponse) {}
+
+}
+
+// The request for udp receive address 
+message RecvAddrRequest {
+  //the address count
+  uint32 addr_count = 1;
+}
+
+message IPv4Addr {
+  string ip = 1;
+  uint32 port = 2;
+}
+
+// The response for udp receive address
+message RecvAddrResponse {
+  repeated IPv4Addr address = 1;
+}
